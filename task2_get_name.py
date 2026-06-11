@@ -1,9 +1,9 @@
 import requests
 
-API_KEY = "YOUR_API_KEY_HERE"
+key={'X-Api-Key': "549a3b2da12a434f9f5eb843eb7a2933"}
 
 
-def get_random_name(nameType:str, quantity: int):
+def get_random_name(api_key:str,nameType:str, quantity: int):
     """
     Make a GET request to the Randommer API to get a random name.
 
@@ -15,3 +15,10 @@ def get_random_name(nameType:str, quantity: int):
     - Include the API key in the X-Api-Key header
     - Print the random name from the response
     """
+    x={
+        'nameType': nameType,
+        'quantity': quantity
+    }
+    card=requests.get('https://randommer.io/api/Name',headers=key,params=x)
+    return card.json()
+print(get_random_name(nameType="firstname",quantity=5,api_key=key))
